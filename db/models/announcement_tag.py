@@ -1,8 +1,9 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, Table
-from sqlalchemy.orm import relationship
 from db.database import Base
 
-advertisement_tag = Table(
-    'advertisement_tag', Base.metadata,
-    Column('advertisement_id', ForeignKey('advertisements.id'), primary_key=True),
-    Column('tag_id', ForeignKey('tags.id'), primary_key=True))
+announcement_tag = Table(
+    'announcement_tags',
+    Base.metadata,
+    Column('announcement_id', ForeignKey('announcements.id')),
+    Column('tag_id', ForeignKey('tags.id'))
+)
