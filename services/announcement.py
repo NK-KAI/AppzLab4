@@ -50,3 +50,15 @@ class AnnouncementService:
             return announcement
         finally:
             db.close()
+
+    @staticmethod
+    def get_all():
+        db = SessionLocal()
+        try:
+            repo = AnnouncementRepository(db)
+            announcements = repo.get_all()
+            if not announcements:
+                raise HTTPException(status_code=404, detail="Announcements not found")
+            return announcements
+        finally:
+            db.close()

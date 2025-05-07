@@ -50,3 +50,15 @@ class TagService:
             return tag
         finally:
             db.close()
+
+    @staticmethod
+    def get_all():
+        db = SessionLocal()
+        try:
+            repo = TagRepository(db)
+            categories = repo.get_all()
+            if not categories:
+                raise HTTPException(status_code=404, detail="Tags not found")
+            return categories
+        finally:
+            db.close()

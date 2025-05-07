@@ -10,14 +10,19 @@ def create_subcategory(subcategory_data: SubcategoryCreate):
     return SubcategoryService.create_subcategory(subcategory_data)
 
 
-@router.delete("/{subcategory_id}", response_model=SubcategoryResponse)
-def delete_subcategory(subcategory_id: int):
-    return SubcategoryService.delete_subcategory(subcategory_id)
-
-
 @router.get("/{subcategory_id}", response_model=SubcategoryResponse)
 def get_subcategory(subcategory_id: int):
     return SubcategoryService.get_by_id(subcategory_id)
+
+
+@router.get("/", response_model=SubcategoryResponse)
+def get_all():
+    return SubcategoryService.get_all()
+
+
+@router.delete("/{subcategory_id}", response_model=SubcategoryResponse)
+def delete_subcategory(subcategory_id: int):
+    return SubcategoryService.delete_subcategory(subcategory_id)
 
 
 @router.put("/{}", response_model=SubcategoryResponse)

@@ -1,3 +1,5 @@
+from typing import Type
+
 from sqlalchemy.orm import Session
 from db.models import User
 from schemas.user import UserUpdate, UserCreate
@@ -9,6 +11,9 @@ class UserRepository:
 
     def get_by_id(self, user_id: int) -> User:
         return self.db.query(User).filter(User.id == user_id).first()
+
+    def get_all(self) -> list[Type[User]]:
+        return self.db.query(User).all()
 
     def create(self, user_data: UserCreate) -> User:
         user = User(name=user_data.name)

@@ -20,6 +20,11 @@ def get_announcement(announcement_id: int):
     return AnnouncementService.get_by_id(announcement_id)
 
 
+@router.get("/", response_model=list[AnnouncementResponse])
+def get_all_announcements():
+    return AnnouncementService.get_all()
+
+
 @router.put("/{}", response_model=AnnouncementResponse)
 def update_announcement(announcement: AnnouncementUpdate):
     return AnnouncementService.update_announcement(announcement)

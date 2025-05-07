@@ -20,6 +20,11 @@ def get_tag(tag_id: int):
     return TagService.get_by_id(tag_id)
 
 
-@router.put("/{}", response_model=TagResponse)
+@router.get("/", response_model=list[TagResponse])
+def get_tags():
+    return TagService.get_all()
+
+
+@router.put("/", response_model=TagResponse)
 def update_tag(tag_data: TagUpdate):
     return TagService.update_tag(tag_data)

@@ -19,6 +19,9 @@ def delete_user(user_id: int):
 def get_user(user_id: int):
     return UserService.get_by_id(user_id)
 
+@router.get("/", response_model=list[UserResponse])
+def get_users():
+    return UserService.get_all()
 
 @router.put("/{}", response_model=UserResponse)
 def update_user(user_data: UserUpdate):

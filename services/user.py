@@ -50,3 +50,15 @@ class UserService:
             return user
         finally:
             db.close()
+
+    @staticmethod
+    def get_all():
+        db = SessionLocal()
+        try:
+            repo = UserRepository(db)
+            categories = repo.get_all()
+            if not categories:
+                raise HTTPException(status_code=404, detail="Users not found")
+            return categories
+        finally:
+            db.close()

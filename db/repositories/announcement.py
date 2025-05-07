@@ -31,6 +31,6 @@ class AnnouncementRepository:
         self.db.commit()
 
     def update(self, announcement_new: Announcement) -> Announcement:
-        self.db.query(User).filter(id=announcement_new.id).update(announcement_new.__dict__)
+        self.db.query(Announcement).filter(id=announcement_new.id).update(announcement_new.__dict__)
         self.db.commit()
         return announcement_new

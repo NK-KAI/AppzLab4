@@ -50,3 +50,16 @@ class SubcategoryService:
             return subcategory
         finally:
             db.close()
+
+
+    @staticmethod
+    def get_all():
+        db = SessionLocal()
+        try:
+            repo = SubcategoryRepository(db)
+            subcategories = repo.get_all()
+            if not subcategories:
+                raise HTTPException(status_code=404, detail="Subcategories not found")
+            return subcategories
+        finally:
+            db.close()
