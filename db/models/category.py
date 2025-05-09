@@ -12,5 +12,5 @@ class Category(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
     name: Mapped[str] = mapped_column(String(50), unique=True, nullable=False)
 
-    subcategories: Mapped[Optional[list["Subcategory"]]] = relationship(back_populates='category', lazy='subquery')
-    announcements: Mapped[Optional[list["Announcement"]]] = relationship(back_populates='category', lazy='subquery')
+    subcategories: Mapped[list["Subcategory"]] = relationship(back_populates='category', lazy='subquery')
+    announcements: Mapped[list["Announcement"]] = relationship(back_populates='category', lazy='subquery')

@@ -2,17 +2,17 @@ from typing import List, Type
 
 from sqlalchemy.orm import Session
 from db.models import Category
-from schemas.category import CategoryUpdate, CategoryCreate
+from schemas.category import CategoryUpdate, CategoryCreate, CategoryResponse
 
 
 class CategoryRepository:
     def __init__(self, db: Session):
         self.db = db
 
-    def get_by_id(self, category_id: int) -> Category:
+    def get_by_id(self, category_id: int) -> CategoryResponse:
         return self.db.query(Category).filter(Category.id == category_id).first()
 
-    def create(self, category_data: CategoryCreate) -> Category:
+    def create(self, category_data: CategoryCreate) -> CategoryResponse:
         category = Category(name=category_data.name)
         self.db.add(category)
         self.db.commit()
@@ -23,10 +23,10 @@ class CategoryRepository:
         self.db.query(Category).filter_by(id=category_id).delete()
         self.db.commit()
 
-    def update(self, category_new: Category) -> Category:
-        self.db.query(Category).filter(id=category_new.id).update(category_new.__dict__)
+    def update(self, category_new: Category) -> CategoryResponse:
+        self.db.query(Category).filter(Category.id==category_new.id).update(category_new.__dict__)
         self.db.commit()
         return category_new
 
-    def get_all(self) -> list[Type[Category]]:
+    def get_all(self) -> list[Type[CategoryResponse]]:
         return self.db.query(Category).all()

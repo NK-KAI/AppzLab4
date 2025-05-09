@@ -32,8 +32,8 @@ class UserService:
         db = SessionLocal()
         try:
             repo = UserRepository(db)
-            user = repo.get_by_id(UserUpdate.id)
-            if not user:
+            user_old = repo.get_by_id(user.id)
+            if not user_old:
                 raise HTTPException(status_code=404, detail="User not found")
             return repo.update(user)
         finally:

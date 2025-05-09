@@ -15,4 +15,4 @@ class UserResponse(UserBase):
 
 
 class UserUpdate(UserBase):
-    pass
+    id: int

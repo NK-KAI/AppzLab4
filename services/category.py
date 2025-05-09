@@ -3,12 +3,12 @@ from fastapi import HTTPException
 from db.database import SessionLocal
 from db.models import Category
 from db.repositories.category import CategoryRepository
-from schemas.category import CategoryUpdate, CategoryCreate
+from schemas import CategorySchema
 
 
 class CategoryService:
     @staticmethod
-    def create_category(category_data: CategoryCreate):
+    def create_category(category_data: CategorySchema):
         db = SessionLocal()
         try:
             repo = CategoryRepository(db)
@@ -32,13 +32,14 @@ class CategoryService:
             db.close()
 
     @staticmethod
-    def update_category(category: CategoryUpdate):
+    def update_category(category: CategorySchema):
         db = SessionLocal()
         try:
             repo = CategoryRepository(db)
-            category = Category(name=CategoryUpdate.name,
-                                subcategories=CategoryUpdate.subcategories,
-                                announcements=CategoryUpdate.announcements,
+            category = Category(id=category.id,
+                                name=category.name,
+                                subcategories=category.subcategories,
+                                announcements=category.announcements,
                                 )
             if not category:
                 raise HTTPException(status_code=404, detail="Category not found")

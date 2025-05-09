@@ -28,4 +28,5 @@ class Announcement(Base):
     user: Mapped[Optional["User"]] = relationship(back_populates="announcements", lazy='subquery')
 
     # M:N
-    tags: Mapped[list["Tag"]] = relationship(secondary=announcement_tag, lazy='subquery')
+    tags: Mapped[list["Tag"]] = relationship(back_populates="announcements",
+                                             secondary=announcement_tag, lazy='subquery')

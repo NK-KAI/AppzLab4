@@ -12,5 +12,5 @@ class Subcategory(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
     name: Mapped[str] = mapped_column(String(50), nullable=False)
 
-    category_id: Mapped[list[int]] = mapped_column(ForeignKey('categories.id'))
-    category: Mapped[list["Category"]] = relationship(back_populates='subcategories', lazy='subquery')
+    category_id: Mapped[int] = mapped_column(ForeignKey('categories.id'))
+    category: Mapped["Category"] = relationship(back_populates='subcategories', lazy='subquery')

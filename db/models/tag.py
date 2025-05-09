@@ -10,4 +10,5 @@ class Tag(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
     name: Mapped[str] = mapped_column(String(30), unique=True, nullable=False)
 
-    announcements: Mapped[list['Announcement']] = relationship(secondary=announcement_tag, lazy='subquery')
+    announcements: Mapped[list['Announcement']] = relationship(back_populates="tags",
+                                                               secondary=announcement_tag, lazy='subquery')
