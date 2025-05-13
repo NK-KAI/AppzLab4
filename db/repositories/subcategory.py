@@ -28,8 +28,8 @@ class SubcategoryRepository:
         self.db.commit()
 
     def update(self, subcategory_new: Subcategory) -> Subcategory:
-        self.db.query(User).filter_by(id=category_new.id).update({'name': subcategory_new.name,
-                                                                  'category_id': subcategory_new.category_id,
-                                                                  'category': subcategory_new.category})
+        self.db.query(Subcategory).filter_by(id=subcategory_new.id).update({'name': subcategory_new.name,
+                                                                            'category_id': subcategory_new.category_id,
+                                                                            'category': subcategory_new.category})
         self.db.commit()
         return subcategory_new
