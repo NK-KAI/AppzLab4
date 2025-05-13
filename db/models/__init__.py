@@ -4,6 +4,7 @@ from .tag import Tag
 from .category import Category
 from .user import User
 from .subcategory import Subcategory
+from .token import TokenData, Token
 
 __all__ = [
     'Announcement',
@@ -11,5 +12,7 @@ __all__ = [
     'Tag',
     'Category',
     'Subcategory',
-    'User'
+    'User',
+    'TokenData',
+    'Token'
 ]

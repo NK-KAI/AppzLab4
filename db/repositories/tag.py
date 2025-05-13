@@ -27,6 +27,6 @@ class TagRepository:
         self.db.commit()
 
     def update(self, tag_new: Tag) -> Tag:
-        self.db.query(User).filter(id=tag_new.id).update(tag_new.__dict__)
+        self.db.query(Tag).filter_by(id=tag_new.id).update({'name': tag_new.name})
         self.db.commit()
         return tag_new

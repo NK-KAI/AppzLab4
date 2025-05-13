@@ -7,12 +7,15 @@ class UserBase(BaseModel):
 
 
 class UserCreate(UserBase):
-    pass
+    password: str
+
+
+class UserUpdate(UserBase):
+    id: int
 
 
 class UserResponse(UserBase):
     id: int
 
-
-class UserUpdate(UserBase):
-    id: int
+    class Config:
+        from_attributes = True

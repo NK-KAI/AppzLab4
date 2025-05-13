@@ -24,9 +24,11 @@ class CategoryRepository:
         self.db.commit()
 
     def update(self, category_new: Category) -> CategoryResponse:
-        self.db.query(Category).filter(Category.id==category_new.id).update(category_new.__dict__)
+        self.db.query(Category).filter_by(id=category_new.id).update({'name': category_new.name,
+                                                                      'subcategories': category_new.subcategories,
+                                                                      'announcements': category_new.announcements})
         self.db.commit()
         return category_new
 
-    def get_all(self) -> list[Type[CategoryResponse]]:
+    def get_all(self) -> list[Type[Category]]:
         return self.db.query(Category).all()

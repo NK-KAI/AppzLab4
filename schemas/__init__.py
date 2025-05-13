@@ -9,7 +9,7 @@ class CategoryBase(BaseModel):
 
     class Config:
         from_attributes = True
-        allow_population_by_field_name = True
+        validate_by_name = True
 
 
 class SubcategoryBase(BaseModel):
@@ -18,13 +18,16 @@ class SubcategoryBase(BaseModel):
 
     class Config:
         from_attributes = True
-        allow_population_by_field_name = True
+        validate_by_name = True
 
 
 class CategorySchema(CategoryBase):
+    id: int
     subcategories: list[SubcategoryBase] = Field(default_factory=list)
     announcements: Optional[list[AnnouncementBase]] = Field(default_factory=list)
 
 
 class SubcategorySchema(SubcategoryBase):
+    id: int
     category_id: int = Field(alias='category_id')
+    category: CategoryBase = Field(alias='category')

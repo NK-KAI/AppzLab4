@@ -29,6 +29,7 @@ class AnnouncementRepository:
     def delete(self, announcement_id: int) -> None:
         self.db.query(Announcement).filter_by(id=announcement_id).delete()
         self.db.commit()
+        return None
 
     def update(self, announcement_new: Announcement) -> Announcement:
         self.db.query(Announcement).filter(id=announcement_new.id).update(announcement_new.__dict__)

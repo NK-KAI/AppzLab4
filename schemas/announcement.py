@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 from typing import List
-from schemas.user import UserCreate
+from schemas.user import UserCreate, UserResponse
 
 
 class AnnouncementBase(BaseModel):
@@ -8,7 +8,7 @@ class AnnouncementBase(BaseModel):
     description: str
     category_id: int
     user_id: int
-    user: UserCreate
+    user: UserResponse
     tag_ids: list[int] = Field(default_factory=list)
 
 

@@ -8,3 +8,11 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine, expi
 
 class Base(DeclarativeBase):
     pass
+
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

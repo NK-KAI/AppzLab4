@@ -9,5 +9,5 @@ __routers__ = [
     announcement_router,
     category_router,
     subcategory_router,
-    tag_router
+    tag_router,
 ]
